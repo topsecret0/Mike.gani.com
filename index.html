@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Love Letter for My Dearest Girl</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* CSS Styles */
+      #envelope {
+        position: relative;
+        width: 280px;
+        height: 180px;
+        border-bottom-left-radius: 6px;
+        border-bottom-right-radius: 6px;
+        margin: auto;
+        top: 150px;
+        background-color: #d9534f;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+      }
+
+      .front {
+        position: absolute;
+        width: 0;
+        height: 0;
+        z-index: 3;
+      }
+
+      .flap {
+        border-left: 140px solid transparent;
+        border-right: 140px solid transparent;
+        border-bottom: 82px solid transparent;
+        border-top: 98px solid #d9534f;
+        transform-origin: top;
+        pointer-events: none;
+      }
+
+      .pocket {
+        border-left: 140px solid #f5a3a2;
+        border-right: 140px solid #f5a3a2;
+        border-bottom: 90px solid #ff6f61;
+        border-top: 90px solid transparent;
+        border-bottom-left-radius: 6px;
+        border-bottom-right-radius: 6px;
+      }
+
+      .letter {
+        position: absolute;
+        background-color: #fff;
+        width: 900px; /* Letter paper width */
+        left: -310px; /* Adjust centering */
+        height: 0;
+        top: 50%;
+        overflow: hidden;
+        border-radius: 6px;
+        box-shadow: 0 2px 26px rgba(0, 0, 0, 0.12);
+        font-family: "Dancing Script", cursive;
+        transition: height 0.6s ease-in-out, top 0.6s ease-in-out;
+        z-index: 5;
+      }
+
+      .letter.show {
+        height: 750px; /* Adjusted height */
+        top: -200px;
+      }
+
+      .letter-content {
+        padding: 30px;
+        font-size: 1.2rem;
+        word-wrap: break-word;
+      }
+
+      .buttons {
+        text-align: center;
+        margin-top: 200px;
+        position: relative;
+        z-index: 6;
+      }
+
+      .buttons button {
+        font-weight: 800;
+        font-style: normal;
+        transition: all 0.1s linear;
+        background-color: transparent;
+        border: solid 2px #d9534f;
+        border-radius: 4px;
+        color: #d9534f;
+        display: inline-block;
+        font-size: 14px;
+        text-transform: uppercase;
+        margin: 5px auto;
+        padding: 10px;
+        text-decoration: none;
+        min-width: 120px;
+        cursor: pointer;
+      }
+
+      .buttons button:hover {
+        background-color: #d9534f;
+        color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="envlope-wrapper">
+      <div id="envelope" class="close">
+        <div class="front flap"></div>
+        <div class="front pocket"></div>
+        <div class="letter" id="letter">
+          <div class="letter-content">
+            <p>My dearest girl,</p>
+            <p>
+              My heart races every time I think of you. I have been in love with you since the moment I laid eyes on you.
+              You have this aura of charm and beauty that I cannot resist. I know that our love is something that will last forever.
+              I know that I can never express the amount of love and admiration I have for you.
+            </p>
+            <p>
+              The way you look at me with those beautiful eyes of yours, the way you make me laugh and the way you make all my worries
+              disappear is something that I will never take for granted. You have this way of making me feel so special and loved and I
+              can't help but feel incredibly lucky to have you in my life.
+            </p>
+            <p>
+              I think about you all the time, even when I'm not with you. I love the way you always make an effort to make me feel like
+              the most important person in the world. You always make sure to make time for me, even when you are really busy.
+              I feel so lucky to have such a wonderful partner by my side.
+            </p>
+            <p>
+              I want to spend the rest of my life with you. I want to be there for you through all the ups and downs. I want to be the one
+              to make you laugh and smile when you are feeling down. I want to be the one to wipe away your tears and make sure you are safe
+              and happy. I want to be your best friend, your lover, and your companion.
+            </p>
+            <p>
+              I love you more than words can express and I promise to be the best partner I can be. I will always be there for you and I will
+              never take you for granted. I will always strive to make you happy and love you with all my heart.
+            </p>
+            <p>Forever Yours,</p>
+            <p><strong>Mike</strong></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="buttons">
+      <button id="open">Open</button>
+    </div>
+
+    <script>
+      document.getElementById("open").addEventListener("click", function () {
+        document.getElementById("letter").classList.add("show");
+        // Hide the open button after it's clicked
+        this.style.display = "none";
+      });
+    </script>
+  </body>
+</html>
