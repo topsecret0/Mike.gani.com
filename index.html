@@ -1,405 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Love Letter and Floating Hearts</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap"
-      rel="stylesheet"
-    />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zoom In Animation</title>
     <style>
-      /* Envelope and Letter Styles */
-      #envelope {
-        position: relative;
-        width: 280px;
-        height: 180px;
-        border-bottom-left-radius: 6px;
-        border-bottom-right-radius: 6px;
-        margin: auto;
-        top: 150px;
-        background-color: #d9534f;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-        z-index: 1;
-      }
-      .front {
-        position: absolute;
-        width: 0;
-        height: 0;
-        z-index: 3;
-      }
-      .flap {
-        border-left: 140px solid transparent;
-        border-right: 140px solid transparent;
-        border-bottom: 82px solid transparent;
-        border-top: 98px solid #d9534f;
-        transform-origin: top;
-        pointer-events: none;
-      }
-      .pocket {
-        border-left: 140px solid #f5a3a2;
-        border-right: 140px solid #f5a3a2;
-        border-bottom: 90px solid #ff6f61;
-        border-top: 90px solid transparent;
-        border-bottom-left-radius: 6px;
-        border-bottom-right-radius: 6px;
-      }
-      .letter {
-        position: absolute;
-        background-color: #fff;
-        width: 900px; /* Letter paper width */
-        left: -310px; /* Adjust centering relative to envelope */
-        height: 0;
-        top: 50%;
-        overflow: hidden;
-        border-radius: 6px;
-        box-shadow: 0 2px 26px rgba(0, 0, 0, 0.12);
-        font-family: "Dancing Script", cursive;
-        transition: height 0.6s ease-in-out, top 0.6s ease-in-out;
-        z-index: 5;
-      }
-      .letter.show {
-        height: 750px; /* Longer letter */
-        top: -200px;
-      }
-      .letter-content {
-        padding: 30px;
-        font-size: 1.2rem;
-        word-wrap: break-word;
-      }
-      .buttons {
-        text-align: center;
-        margin-top: 200px;
-        position: relative;
-        z-index: 7;
-      }
-      .buttons button {
-        font-weight: 800;
-        font-style: normal;
-        transition: all 0.1s linear;
-        background-color: transparent;
-        border: solid 2px #d9534f;
-        border-radius: 4px;
-        color: #d9534f;
-        display: block;
-        font-size: 14px;
-        text-transform: uppercase;
-        margin: 5px auto;
-        padding: 10px;
-        text-decoration: none;
-        min-width: 120px;
-        cursor: pointer;
-        z-index: 8;
-      }
-      .buttons button:hover {
-        background-color: #d9534f;
-        color: #fff;
-      }
-      
-      /* Floating Hearts and Fireworks Styles (for effect) */
-      .banner {
-          position: absolute;
-          font-size: 1.5em;
-          background-color: #ff69b4;
-          color: #fff;
-          padding: 10px;
-          font-family: 'Comic Sans MS', cursive, sans-serif;
-          font-weight: 300;
-          border-radius: 10px;
-          white-space: nowrap;
-          opacity: 0;
-          transform: scale(0.5);
-          transition: opacity 1s ease-in-out, transform 1s ease-in-out;
-          z-index: 9;
-      }
-      .banner.animate {
-          opacity: 1;
-          transform: scale(1);
-      }
-      .particle {
-          position: absolute;
-          width: 8px;
-          height: 8px;
-          background-color: #ff6347;
-          border-radius: 50%;
-          opacity: 1;
-          z-index: 9;
-      }
-      @keyframes explode {
-          0% {
-              opacity: 1;
-              transform: scale(1);
-          }
-          100% {
-              opacity: 0;
-              transform: scale(0);
-              top: 100vh;
-              left: 100vw;
-          }
-      }
-      .particle.animate {
-          animation: explode 1s forwards;
-      }
-      .heart {
-        position: absolute;
-        font-size: 2rem;
-        color: #e60073;
-        opacity: 0.8;
-        animation: float 6s linear infinite;
-        z-index: 2;
-      }
-      .heart:nth-child(1) {
-        left: 10%;
-        animation-delay: 0s;
-      }
-      .heart:nth-child(2) {
-        left: 30%;
-        animation-delay: 1s;
-      }
-      .heart:nth-child(3) {
-        left: 50%;
-        animation-delay: 2s;
-      }
-      .heart:nth-child(4) {
-        left: 70%;
-        animation-delay: 3s;
-      }
-      .heart:nth-child(5) {
-        left: 90%;
-        animation-delay: 4s;
-      }
-      @keyframes float {
-        0% {
-          top: 100%;
-          transform: translateX(0) rotate(0deg);
-          opacity: 0;
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to bottom, #fce4ec, #f8bbd0);
+            overflow: hidden;
+            text-align: center;
+            font-family: 'Poppins', sans-serif;
         }
-        10% {
-          opacity: 0.8;
+        .container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
-        50% {
-          opacity: 0.8;
+        .image {
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            transform: scale(0.1);
+            animation: zoomIn 3s ease-in-out forwards;
         }
-        100% {
-          top: -10%;
-          transform: translateX(20px) rotate(360deg);
-          opacity: 0;
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.1);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
         }
-      }
+        .text-container {
+            position: absolute;
+            bottom: 10%;
+            text-align: center;
+            color: pink;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+        }
+        .text {
+            font-size: 32px;
+            font-weight: bold;
+        }
+        .subtext {
+            font-size: 24px;
+            font-style: italic;
+        }
+        .heart {
+            font-size: 36px;
+            margin-top: 10px;
+            animation: heartbeat 1.5s infinite;
+        }
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+        }
     </style>
-  </head>
-  <body>
-    <!-- Floating hearts -->
-    <div class="heart">❤️</div>
-    <div class="heart">❤️</div>
-    <div class="heart">❤️</div>
-    <div class="heart">❤️</div>
-    <div class="heart">❤️</div>
-
-    <!-- Envelope and Letter -->
-    <div class="envlope-wrapper">
-      <div id="envelope" class="close">
-        <div class="front flap"></div>
-        <div class="front pocket"></div>
-        <div class="letter" id="letter">
-          <div class="letter-content">
-            <p>My dearest girl,</p>
-            <p>
-              My heart races every time I think of you. I have been in love with you since the moment I laid eyes on you.
-              You have this aura of charm and beauty that I cannot resist. I know that our love is something that will last forever.
-              I know that I can never express the amount of love and admiration I have for you.
-            </p>
-            <p>
-              The way you look at me with those beautiful eyes of yours, the way you make me laugh and the way you make all my worries
-              disappear is something that I will never take for granted. You have this way of making me feel so special and loved and I
-              can't help but feel incredibly lucky to have you in my life.
-            </p>
-            <p>
-              I think about you all the time, even when I'm not with you. I love the way you always make an effort to make me feel like
-              the most important person in the world. You always make sure to make time for me, even when you are really busy.
-              I feel so lucky to have such a wonderful partner by my side.
-            </p>
-            <p>
-              I want to spend the rest of my life with you. I want to be there for you through all the ups and downs. I want to be the one
-              to make you laugh and smile when you are feeling down. I want to be the one to wipe away your tears and make sure you are safe
-              and happy. I want to be your best friend, your lover, and your companion.
-            </p>
-            <p>
-              I love you more than words can express and I promise to be the best partner I can be. I will always be there for you and I will
-              never take you for granted. I will always strive to make you happy and love you with all my heart.
-            </p>
-            <p>Forever Yours,</p>
-            <p><strong>Mike</strong></p>
-          </div>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <img src="mew.png" alt="Zooming Image" class="image">
+        <div class="text-container">
+            <div class="text">Flowers for you my love 😘</div>
+            <div class="subtext">Happy monthsarry my love</div>
+            <div class="heart">❤️</div>
         </div>
-      </div>
     </div>
-    <div class="buttons">
-      <!-- Single button that initially says "Open" -->
-      <button id="actionButton">Open</button>
-    </div>
-
-    <script>
-      // Get the button element and track state
-      var actionButton = document.getElementById("actionButton");
-      var state = "open"; // "open" -> "iLoveYou"
-
-      actionButton.addEventListener("click", function () {
-        if (state === "open") {
-          // Show the letter
-          document.getElementById("letter").classList.add("show");
-          // Change button text to "I Love You" and move it further down
-          actionButton.textContent = "I Love You";
-          actionButton.style.marginTop = "270px"; // Set margin-top to 270px
-          actionButton.style.zIndex = "8"; // Ensure it's above the letter
-          state = "iLoveYou";
-        } else if (state === "iLoveYou") {
-          // Trigger the floating banners & fireworks effect
-          startEffects();
-          // Hide the button after clicking
-          actionButton.style.display = "none";
-        }
-      });
-
-      // Define the startEffects function (floating banners & fireworks effect)
-      function startEffects() {
-        (function() {
-          var message = '❤️ I Love You ❤️'; // Updated message
-          var numBanners = 50; // Number of banners to spawn
-          var duration = 20000; // Duration for one complete animation cycle in ms (slowed down)
-          var numFireworks = 10; // Number of fireworks bursts
-          var particlesPerFirework = 50; // Number of particles per firework
-
-          // Create and append additional styles for banners and particles
-          var style = document.createElement('style');
-          style.textContent = `
-              .banner {
-                  position: absolute;
-                  font-size: 1.5em;
-                  background-color: #ff69b4;
-                  color: #fff;
-                  padding: 10px;
-                  font-family: 'Comic Sans MS', cursive, sans-serif;
-                  font-weight: 300;
-                  border-radius: 10px;
-                  white-space: nowrap;
-                  opacity: 0;
-                  transform: scale(0.5);
-                  transition: opacity 1s ease-in-out, transform 1s ease-in-out;
-                  z-index: 9;
-              }
-              .banner.animate {
-                  opacity: 1;
-                  transform: scale(1);
-              }
-              .particle {
-                  position: absolute;
-                  width: 8px;
-                  height: 8px;
-                  background-color: #ff6347;
-                  border-radius: 50%;
-                  opacity: 1;
-                  z-index: 9;
-              }
-              @keyframes explode {
-                  0% {
-                      opacity: 1;
-                      transform: scale(1);
-                  }
-                  100% {
-                      opacity: 0;
-                      transform: scale(0);
-                      top: 100vh;
-                      left: 100vw;
-                  }
-              }
-              .particle.animate {
-                  animation: explode 1s forwards;
-              }
-          `;
-          document.head.appendChild(style);
-          var heartShape = function(t) {
-              var scale = 25; // Adjust this value to change the size of the heart shape
-              var x = scale * 16 * Math.pow(Math.sin(t), 3);
-              var y = scale * (13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t));
-              return { x: x, y: -y };
-          };
-          function createBanner(x, y) {
-              var banner = document.createElement('div');
-              banner.className = 'banner';
-              banner.textContent = message;
-              banner.style.left = (x + window.innerWidth / 2) + 'px';
-              banner.style.top = (y + window.innerHeight / 2) + 'px';
-              document.body.appendChild(banner);
-              return banner;
-          }
-          function createParticle(x, y, angle, distance) {
-              var particle = document.createElement('div');
-              particle.className = 'particle';
-              particle.style.left = (x + window.innerWidth / 2) + 'px';
-              particle.style.top = (y + window.innerHeight / 2) + 'px';
-              particle.style.transform = `translate(${distance * Math.cos(angle)}px, ${distance * Math.sin(angle)}px)`;
-              document.body.appendChild(particle);
-              return particle;
-          }
-          function createFirework(x, y) {
-              for (var i = 0; i < particlesPerFirework; i++) {
-                  (function(i) {
-                      setTimeout(function() {
-                          var angle = Math.random() * Math.PI * 2;
-                          var distance = Math.random() * 300;
-                          var particle = createParticle(x, y, angle, distance);
-                          setTimeout(function() {
-                              particle.classList.add('animate');
-                          }, 10);
-                      }, i * 10);
-                  })(i);
-              }
-          }
-          var tIncrement = Math.PI * 2 / numBanners;
-          var banners = [];
-          for (var i = 0; i < numBanners; i++) {
-              (function(i) {
-                  setTimeout(function() {
-                      var t = i * tIncrement;
-                      var pos = heartShape(t);
-                      var banner = createBanner(pos.x, pos.y);
-                      banners.push(banner);
-                      setTimeout(function() {
-                          banner.classList.add('animate');
-                      }, 10);
-                  }, i * 200);
-              })(i);
-          }
-          for (var i = 0; i < numFireworks; i++) {
-              (function(i) {
-                  setTimeout(function() {
-                      var x = Math.random() * window.innerWidth;
-                      var y = Math.random() * window.innerHeight;
-                      createFirework(x, y);
-                  }, i * 1000);
-              })(i);
-          }
-          function animate() {
-              var start = null;
-              function step(timestamp) {
-                  if (!start) start = timestamp;
-                  var progress = (timestamp - start) / duration;
-                  var tIncrement = Math.PI * 2 / numBanners;
-                  banners.forEach(function(banner, i) {
-                      var t = (i * tIncrement + progress * Math.PI * 2) % (Math.PI * 2);
-                      var pos = heartShape(t);
-                      banner.style.left = (pos.x + window.innerWidth / 2) + 'px';
-                      banner.style.top = (pos.y + window.innerHeight / 2) + 'px';
-                  });
-                  requestAnimationFrame(step);
-              }
-              requestAnimationFrame(step);
-          }
-          animate();
-        })();
-      }
-    </script>
-  </body>
+</body>
 </html>
